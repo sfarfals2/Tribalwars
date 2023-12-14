@@ -8,23 +8,22 @@
 // @description AutoFarm para Tribal Wars, com alerta sonoro para captcha.
 // @match    ://*.tribalwars.com.pt/*&screen=am_farm*
 // ==/UserScript==
-
+var musicAddress= "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d3a7b18ab3.mp3";
 var botProtect = $('body').data('bot-protect');
+var	minhaVar = "";				// NÃO ALTERAR!
 if (document.URL.indexOf('screen=am_farm') == -1)
 	console.log('Você deve executar o script no assistente de farm!');
 else if (botProtect !== undefined) {
-	alert('Alerta Captcha!');
-	$("<audio id='audio' autoplay><source src='https://www.myinstants.com/media/sounds/funny_82hiegE.mp3' type='audio/mp3' /></audio>").appendTo("body");
+	$("<audio id='audio' loop autoplay><source src='"+musicAddress+"' type='audio/mp3' /></audio>").appendTo("body");
 }
 else {
 	var x				= 1,				// NÃO ALTERAR!
 		menu			= $('#am_widget_Farm a.farm_icon_a'),
         startAutomatic = true,
 		tempo			= true,				// Tempo em milesegundos
-		minhaVar		= "",				// NÃO ALTERAR!
 		altAldTempo		= true,				// Tempo em milesegundos para alternar as aldeias (Use 'true' para aleatório)
 		atualizarPagina	= true,			// Atualizar a página automaticamente? ('true' = SIM, 'false' = NÃO)
-		tempoAtualizar	= 120,			// tempo atualizar pagina em segundos
+		tempoAtualizar	= 300,			// tempo atualizar pagina em segundos
 		boxCaptcha		= $("#bot_check");	// NÃO ALTERAR!
 
 	var aleatorio = function(superior, inferior) {
@@ -34,7 +33,14 @@ else {
 		return Math.round(parseInt(inferior) + aleat);
 	};
 
-    $('li[data-hotkey="9"]>span>a')[0].click();
+	var botProtectionAppear = function(){
+	if($('body').data('bot-protect') !== undefined || $('#botprotection_quest').is(':visible')){
+        $("<audio id='audio' loop autoplay><source src='"+musicAddress+"' type='audio/mp3' /></audio>").appendTo("body");
+		return true;
+	}
+	return false;
+	}
+
 
 	$('img').each(function() {
 		var tempStr = $(this).attr('src');
@@ -45,13 +51,13 @@ else {
 	if (atualizarPagina === true) {
 		setInterval(function() {
 			window.location.reload();
-		}, aleatorio(tempoAtualizar*1000-20000, tempoAtualizar*1000+20000));
+		}, aleatorio(tempoAtualizar*1000-40000, tempoAtualizar*1000+40000));
 	}
 
 	if (tempo === true)
-		tempo = aleatorio(300, 1000);
+		tempo = aleatorio(200, 600);
     else
-		tempo = parseInt(tempo) + parseInt(aleatorio(500, 1000));
+		tempo = parseInt(tempo) + parseInt(aleatorio(200, 600));
 
 	if (altAldTempo === true)
 		altAldTempo = aleatorio(25000, 50000);
@@ -61,6 +67,7 @@ else {
 
     var makeFarmClick = function(){
                 var tempoAgora = tempo * x;
+				if(botProtectionAppear()) return;
 				selectMasterButton($("#plunder_list tr").filter(":visible").eq(1));
         if(document.querySelector("#ds_body > div.autoHideBox.error")== null){
 				setTimeout(function(minhaVar) {
@@ -71,7 +78,11 @@ else {
 
 
     if(startAutomatic){
-    setTimeout(function(minhaVar) {makeFarmClick();}, 2698, this);
+
+    setTimeout(function(minhaVar) {$('li[data-hotkey="9"]>span>a')[0].click();}, 2698, this);
+
+
+    setTimeout(function(minhaVar) {makeFarmClick();}, 7000, this);
     }
     else{
         document.addEventListener('keypress', function(event) {
@@ -81,15 +92,11 @@ else {
             }
         });
     }
-	//var altVillage = setInterval(function () {
-	//	$('.arrowRight, .groupRight').click();
-	//	clearInterval(altVillage);
-	//}, altAldTempo);
 
 	var checkCaptcha = setInterval(function() {
 		if (boxCaptcha.length) {
-            $("<audio id='audio' autoplay><source src='https://www.myinstants.com/media/sounds/funny_82hiegE.mp3' type='audio/mp3' /></audio>").appendTo("body");
-
+            $("<audio id='audio' loop autoplay><source src='"+musicAddress+"' type='audio/mp3' /></audio>").appendTo("body");
+            atualizarPagina = false;
             setTimeout(function(minhaVar) {
                     alert('Alerta Captcha!');
 				}, 1000, this);
