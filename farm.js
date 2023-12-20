@@ -41,6 +41,26 @@ else {
 	return false;
 	}
 
+    var addToVillageArrayAndMoveNextIfNotExists = function(){
+        var currentVillageId= $.cookie("global_village_id");
+        var arrayOfVillages= JSON.parse(localStorage.getItem('villagesVisited'));
+        if(arrayOfVillages == null){
+            arrayOfVillages = [];
+            arrayOfVillages.push(currentVillageId);
+            localStorage.setItem('villagesVisited', JSON.stringify(arrayOfVillages));
+            $('#village_switch_right')[0].click();
+        }else{
+            if(jQuery.inArray(currentVillageId, arrayOfVillages) == -1)
+            {
+                arrayOfVillages.push(currentVillageId);
+                localStorage.setItem('villagesVisited', JSON.stringify(arrayOfVillages));
+                $('#village_switch_right')[0].click();
+            }else{
+                localStorage.removeItem('villagesVisited');
+            }
+        }
+    }
+
 
 	$('img').each(function() {
 		var tempStr = $(this).attr('src');
@@ -73,6 +93,9 @@ else {
 				setTimeout(function(minhaVar) {
                     makeFarmClick();
 				}, tempoAgora, this);
+        }else
+        {
+            addToVillageArrayAndMoveNextIfNotExists();
         }
     }
 
