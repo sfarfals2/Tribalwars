@@ -8,6 +8,7 @@
 // @description AutoFarm para Tribal Wars, com alerta sonoro para captcha.
 // @match    ://*.tribalwars.com.pt/*&screen=am_farm*
 // @updateURL https://raw.githubusercontent.com/sfarfals2/Tribalwars/main/farm.js
+// @downloadURL https://raw.githubusercontent.com/sfarfals2/Tribalwars/main/farm.js
 // ==/UserScript==
 var musicAddress= "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d3a7b18ab3.mp3";
 var botProtect = $('body').data('bot-protect');
