@@ -5,6 +5,8 @@
 // @version  4
 // @match    ://*.tribalwars.com.pt/*&screen=place*&try=confirm
 // @grant    none
+// @updateURL https://raw.githubusercontent.com/sfarfals2/Tribalwars/main/farmGod.js
+// @downloadURL https://raw.githubusercontent.com/sfarfals2/Tribalwars/main/farmGod.js
 // ==/UserScript==
 
 (function() {
