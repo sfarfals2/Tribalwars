@@ -3,7 +3,7 @@
 // @author Reformed
 // @email ...
 // @namespace ...
-// @version 1.1
+// @version 1.2
 // @grant Publico
 // @description AutoFarm para Tribal Wars, com alerta sonoro para captcha.
 // @match    ://*.tribalwars.com.pt/*&screen=am_farm*
@@ -45,6 +45,7 @@ else {
 
 	if (atualizarPagina === true) {
 		setInterval(function() {
+	            	if(botProtectionAppear()) return;
 			window.location.reload();
 		}, aleatorio(tempoAtualizar*1000-40000, tempoAtualizar*1000+40000));
 	}
