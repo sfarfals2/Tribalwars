@@ -3,7 +3,7 @@
 // @author Reformed
 // @email ...
 // @namespace ...
-// @version 1.2
+// @version 1.1
 // @grant Publico
 // @description AutoFarm para Tribal Wars, com alerta sonoro para captcha.
 // @match    ://*.tribalwars.com.pt/*&screen=am_farm*
@@ -45,7 +45,7 @@ else {
 
 	if (atualizarPagina === true) {
 		setInterval(function() {
-	            	if(botProtectionAppear()) return;
+            if(botProtectionAppear()) return;
 			window.location.reload();
 		}, aleatorio(tempoAtualizar*1000-40000, tempoAtualizar*1000+40000));
 	}
@@ -55,7 +55,22 @@ else {
     else
 		tempo = parseInt(tempo) + parseInt(aleatorio(100, 300));
 
+    var waitForFarmGodOptionsAndMoveToWaitForLoading = function(){
+        if($('input[value="Plan farms"]').is(':visible')){
+           $('input[value="Plan farms"]')[0].click();
+           waitForLoading();
+        }else{
+            setTimeout(function(minhaVar) {waitForFarmGodOptionsAndMoveToWaitForLoading();}, 1000, this);
+        }
+    }
 
+    var waitForLoading = function(){
+        if($('#popup_box_FarmGod > div > div > img').is(':visible') == false){
+           makeFarmClick();
+        }else{
+            setTimeout(function(minhaVar) {waitForLoading();}, 1000, this);
+        }
+    }
 
     var makeFarmClick = function(){
                 var tempoAgora = tempo * x;
@@ -70,9 +85,10 @@ else {
 
 
     if(startAutomatic){
-        setTimeout(function(minhaVar) {$('li[data-hotkey="8"]>span>a')[0].click();}, 2698, this);
-        setTimeout(function(minhaVar) {$('input[value="Plan farms"]')[0].click();}, 4698, this);
-        setTimeout(function(minhaVar) {makeFarmClick();}, 7000, this);
+        setTimeout(function(minhaVar) {
+            $('li[data-hotkey="8"]>span>a')[0].click();
+            waitForFarmGodOptionsAndMoveToWaitForLoading();
+        }, 2698, this);
     }
     else{
         document.addEventListener('keypress', function(event) {
