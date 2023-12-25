@@ -560,7 +560,7 @@ window.FarmGod.Main = (function (Library, Translation) {
 
       $html.find('#plunder_list').find('tr[id^="village_"]').map((i, el) => {
         let $el = $(el);
-        var img = $el.find('img[src*="graphic/dots/"]').attr('src');
+        var img = $el.find('img[src*="graphic/dots/"]');
         return data.farms.farms[$el.find('a[href*="screen=report&mode=all&view="]').first().text().toCoord()] = {
           'id': $el.attr('id').split('_')[1].toNumber(),
           'color': img != undefined? img.attr('src').match(/dots\/(green|yellow|red|blue|red_blue)/)[1] : 'green',
