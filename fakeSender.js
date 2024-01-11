@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Enviar Fakes
-// @version      v1.0
+// @version      v1.1
 // @author       eu
 // @match        ://*.tribalwars.com.pt/*screen=place*
 // @updateURL https://raw.githubusercontent.com/sfarfals2/Tribalwars/main/fakeSender.js
@@ -95,7 +95,7 @@
 
 
     var pracaReunioesSelecionar = function(){
-        if($("#content_value > div.error_box > div:contains('A Força')").is(':visible')){
+        if($("#content_value > div.error_box > div:contains('A força')").is(':visible')){
             adicionarAldeiaAoArrayEAvancaParaProximaSeNaoExistir();
             return;
         }
