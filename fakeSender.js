@@ -1,12 +1,10 @@
 // ==UserScript==
 // @name         Enviar Fakes
-// @namespace    http://tampermonkey.net/
-// @version      2024-01-11
-// @description  try to take over the world!
-// @author       You
+// @version      v1.0
+// @author       eu
 // @match        ://*.tribalwars.com.pt/*screen=place*
-// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @grant        none
+// @updateURL https://raw.githubusercontent.com/sfarfals2/Tribalwars/main/fakeSender.js
+// @downloadURL https://raw.githubusercontent.com/sfarfals2/Tribalwars/main/fakeSender.js
 // ==/UserScript==
 
 (function() {
